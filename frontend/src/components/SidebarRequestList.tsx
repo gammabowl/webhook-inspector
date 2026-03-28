@@ -59,7 +59,18 @@ export default function SidebarRequestList({ requests, selectedId, onSelect, onD
         <div className="flex items-center justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">Requests</p>
-            <h2 className="mt-1 text-lg font-semibold text-slate-900">{requests.length} received</h2>
+            <h2 className="mt-1 flex items-center gap-2 text-lg font-semibold text-slate-900">
+              <span>{requests.length} received</span>
+              {requests.length > 0 ? (
+                <span
+                  className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-sky-100 bg-gradient-to-br from-sky-50 via-cyan-50 to-fuchsia-50 text-cyan-600"
+                  aria-label="Polling"
+                  title="Polling"
+                >
+                  <PulseIcon className="h-3.5 w-3.5" />
+                </span>
+              ) : null}
+            </h2>
           </div>
         </div>
       </div>
@@ -69,20 +80,7 @@ export default function SidebarRequestList({ requests, selectedId, onSelect, onD
           <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-4 py-8 text-sm text-slate-500">
             <div className="flex items-center gap-3">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-sky-50 via-cyan-50 to-fuchsia-50 ring-1 ring-sky-100">
-                <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
-                  <defs>
-                    <linearGradient id="pulse-sidebar-gradient" x1="4" y1="4" x2="20" y2="20" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="#0ea5e9" />
-                      <stop offset="0.5" stopColor="#06b6d4" />
-                      <stop offset="1" stopColor="#d946ef" />
-                    </linearGradient>
-                  </defs>
-                  <circle cx="12" cy="12" r="0" stroke="url(#pulse-sidebar-gradient)" strokeWidth="1.7" opacity="0.9">
-                    <animate attributeName="r" calcMode="spline" dur="1.2s" values="0;10" keySplines=".52,.6,.25,.99" repeatCount="indefinite" />
-                    <animate attributeName="opacity" calcMode="spline" dur="1.2s" values="1;0" keySplines=".52,.6,.25,.99" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="12" cy="12" r="2.1" fill="url(#pulse-sidebar-gradient)" />
-                </svg>
+                <PulseIcon className="h-4 w-4" />
               </span>
               <div>
                 <p className="font-medium text-slate-700">Waiting for the first webhook request.</p>
@@ -99,5 +97,24 @@ export default function SidebarRequestList({ requests, selectedId, onSelect, onD
         )}
       </div>
     </div>
+  );
+}
+
+function PulseIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <defs>
+        <linearGradient id="pulse-sidebar-gradient" x1="4" y1="4" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#0ea5e9" />
+          <stop offset="0.5" stopColor="#06b6d4" />
+          <stop offset="1" stopColor="#d946ef" />
+        </linearGradient>
+      </defs>
+      <circle cx="12" cy="12" r="0" stroke="url(#pulse-sidebar-gradient)" strokeWidth="1.7" opacity="0.9">
+        <animate attributeName="r" calcMode="spline" dur="1.2s" values="0;10" keySplines=".52,.6,.25,.99" repeatCount="indefinite" />
+        <animate attributeName="opacity" calcMode="spline" dur="1.2s" values="1;0" keySplines=".52,.6,.25,.99" repeatCount="indefinite" />
+      </circle>
+      <circle cx="12" cy="12" r="2.1" fill="url(#pulse-sidebar-gradient)" />
+    </svg>
   );
 }
