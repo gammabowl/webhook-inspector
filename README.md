@@ -18,6 +18,10 @@ A lightweight webhook testing platform built with NestJS, React, Redis, Tailwind
 - Realtime: polling
 - Containerization: Docker + Docker Compose
 
+## Screenshot
+
+<img width="1640" height="1080" alt="webhook_inspector_app" src="https://github.com/user-attachments/assets/7b2983b1-187a-4847-86a8-498ec4e03b1a" />
+
 ## Run with Docker
 
 ```bash
