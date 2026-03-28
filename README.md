@@ -1,6 +1,6 @@
 # Webhook Inspector
 
-A lightweight webhook testing platform built with NestJS, React, Redis, TailwindCSS, and Docker.
+A lightweight webhook testing platform built with NestJS, React, Redis, TailwindCSS, and Docker. 
 
 ## What it does
 
@@ -92,3 +92,5 @@ The app is organized as two standalone packages:
 - `frontend/`
 
 You can install and run them separately if you want to develop without Docker.
+
+Assisted by Codex.
