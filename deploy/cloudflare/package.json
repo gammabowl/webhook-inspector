@@ -9,7 +9,6 @@
     "deploy": "npm run build:frontend && wrangler deploy"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260712.0",
     "typescript": "^5.7.2",
     "wrangler": "^4.25.0"
   }
