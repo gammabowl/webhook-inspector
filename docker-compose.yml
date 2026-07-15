@@ -9,30 +9,39 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
     environment:
       PORT: "3000"
       STORAGE_DRIVER: ${STORAGE_DRIVER:-sqlite}
       SQLITE_PATH: /app/data/webhook-inspector.db
       REDIS_URL: redis://redis:6379
       CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3001}
+      CHOKIDAR_USEPOLLING: "true"
     volumes:
+      - ./backend:/app
       - backend-data:/app/data
+      - backend-node-modules:/app/node_modules
     ports:
       - "3000:3000"
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:3000}
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 3001"
+    environment:
+      VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:3000}
+      CHOKIDAR_USEPOLLING: "true"
     depends_on:
       - backend
+    volumes:
+      - ./frontend:/app
+      - frontend-node-modules:/app/node_modules
     ports:
-      - "3001:80"
+      - "3001:3001"
 
 volumes:
   backend-data:
+  backend-node-modules:
+  frontend-node-modules:
