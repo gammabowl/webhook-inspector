@@ -51,6 +51,16 @@ npm run dev
 npm run deploy
 ```
 
+## GitHub Actions
+
+This repo includes [.github/workflows/deploy-cloudflare.yml](/Users/shashi/code/webhook-inspector/.github/workflows/deploy-cloudflare.yml:1) to deploy on every push to `main`.
+
+Add these repository secrets before relying on the workflow:
+
+- `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_PUBLIC_URL`
+
 ## Notes
 
 - The D1 schema is created lazily by the Worker on first request.
