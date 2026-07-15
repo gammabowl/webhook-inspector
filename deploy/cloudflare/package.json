@@ -1,0 +1,15 @@
+{
+  "name": "webhook-inspector-cloudflare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:frontend": "node ./scripts/build-frontend.mjs",
+    "cf-typegen": "wrangler types",
+    "dev": "wrangler dev",
+    "deploy": "npm run build:frontend && wrangler deploy"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "wrangler": "^4.25.0"
+  }
+}

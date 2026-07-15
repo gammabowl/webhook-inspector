@@ -1,6 +1,7 @@
 import type { WebhookRequest } from "./types";
+import { getApiBaseUrl } from "./config";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:3000";
+const API_BASE = getApiBaseUrl();
 
 async function requestJson<T>(input: RequestInfo | URL, init?: RequestInit): Promise<T> {
   const response = await fetch(input, init);

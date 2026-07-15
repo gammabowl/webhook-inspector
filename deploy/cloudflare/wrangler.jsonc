@@ -1,0 +1,29 @@
+{
+  "name": "webhook-inspector-cloudflare",
+  "main": "./src/index.ts",
+  "compatibility_date": "2026-07-15",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    {
+      "pattern": "webhook.opendevutils.com",
+      "custom_domain": true
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "webhook-inspector-db",
+      "database_id": "11019df4-531f-4f5d-afde-5afd6c6adf27"
+    }
+  ],
+  "vars": {
+    "CORS_ORIGIN": ""
+  }
+}

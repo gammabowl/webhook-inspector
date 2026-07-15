@@ -5,10 +5,11 @@ import { WebhookRequest } from "../lib/types";
 import SidebarRequestList from "../components/SidebarRequestList";
 import RequestViewer from "../components/RequestViewer";
 import CopyButton from "../components/CopyButton";
+import { getApiBaseUrl } from "../lib/config";
 
 const POLL_INTERVAL = 1500;
 const MAX_REQUESTS = 50;
-const API_ORIGIN = new URL(import.meta.env.VITE_API_BASE_URL ?? "http://localhost:3000").origin;
+const API_ORIGIN = new URL(getApiBaseUrl()).origin;
 const STORAGE_KEY = "webhook-inspector.webhook-id";
 
 export default function WebhookPage() {

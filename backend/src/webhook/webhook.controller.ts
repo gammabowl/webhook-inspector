@@ -2,6 +2,9 @@ import { All, Controller, Delete, Get, Param, Query, Req } from "@nestjs/common"
 import { Request } from "express";
 import { StoredWebhookRequest, WebhookService } from "./webhook.service";
 
+const WEBHOOK_ID_ROUTE_PATTERN =
+  "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}";
+
 @Controller()
 export class WebhookController {
   constructor(private readonly webhookService: WebhookService) {}
@@ -40,13 +43,13 @@ export class WebhookController {
     };
   }
 
-  @All("/:webhookId([A-Za-z0-9-]+)")
+  @All(`/:webhookId(${WEBHOOK_ID_ROUTE_PATTERN})`)
   async receiveWebhook(@Param("webhookId") webhookId: string, @Req() req: Request): Promise<{ ok: true; id: string }> {
     const record = await this.webhookService.storeWebhookRequest(webhookId, req);
     return { ok: true, id: record.id };
   }
 
-  @All("/webhook/:webhookId([A-Za-z0-9-]+)")
+  @All(`/webhook/:webhookId(${WEBHOOK_ID_ROUTE_PATTERN})`)
   async receiveWebhookLegacy(@Param("webhookId") webhookId: string, @Req() req: Request): Promise<{ ok: true; id: string }> {
     const record = await this.webhookService.storeWebhookRequest(webhookId, req);
     return { ok: true, id: record.id };
