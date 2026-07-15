@@ -1,6 +1,6 @@
 # Webhook Inspector
 
-A lightweight webhook testing platform built with NestJS, React, SQLite/Redis, TailwindCSS, and Docker.
+A lightweight webhook testing utility built with NestJS, React, SQLite/Redis, TailwindCSS, and Docker.
 
 ## What it does
 
