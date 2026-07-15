@@ -1,12 +1,16 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CopyButton from "../components/CopyButton";
+import { isWebhookId } from "../lib/webhookId";
 
 const STORAGE_KEY = "webhook-inspector.webhook-id";
 
 export default function Home() {
   const navigate = useNavigate();
-  const [webhookId, setWebhookId] = useState<string | null>(() => window.localStorage.getItem(STORAGE_KEY));
+  const [webhookId, setWebhookId] = useState<string | null>(() => {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    return stored && isWebhookId(stored) ? stored : null;
+  });
 
   const currentUrl = useMemo(() => {
     if (!webhookId) {
@@ -17,7 +21,7 @@ export default function Home() {
   }, [webhookId]);
 
   const openCurrent = (): void => {
-    if (!webhookId) {
+    if (!webhookId || !isWebhookId(webhookId)) {
       return;
     }
 
@@ -36,7 +40,7 @@ export default function Home() {
       <div className="w-full max-w-3xl rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft md:p-10">
         <div className="space-y-4">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">Webhook Inspector</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl">A private URL for catching webhook traffic.</h1>
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl">A unique URL for testing webhook traffic.</h1>
           <p className="max-w-2xl text-base leading-7 text-slate-600">
             Create a fresh URL, send webhooks to it, and inspect every request in a clean split-pane view.
           </p>

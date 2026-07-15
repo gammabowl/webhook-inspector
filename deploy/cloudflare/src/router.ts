@@ -6,7 +6,7 @@ import { ingestWebhookHandler } from "./handlers/ingest-webhook";
 import { listRequestsHandler } from "./handlers/list-requests";
 import { errorJson } from "./responses";
 
-const WEBHOOK_ID_PATTERN = /^[A-Za-z0-9-]+$/;
+const WEBHOOK_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 function matchWebhookId(value: string | undefined): string | null {
   if (!value || !WEBHOOK_ID_PATTERN.test(value)) {
