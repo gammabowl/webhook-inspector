@@ -1,6 +1,9 @@
 services:
+  # Optional: only needed when STORAGE_DRIVER=redis. Start it with:
+  #   docker-compose --profile redis up --build
   redis:
     image: redis:7-alpine
+    profiles: ["redis"]
     ports:
       - "6379:6379"
     command: ["redis-server", "--appendonly", "yes"]
@@ -11,10 +14,12 @@ services:
       dockerfile: Dockerfile
     environment:
       PORT: "3000"
+      STORAGE_DRIVER: ${STORAGE_DRIVER:-sqlite}
+      SQLITE_PATH: /app/data/webhook-inspector.db
       REDIS_URL: redis://redis:6379
       CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3001}
-    depends_on:
-      - redis
+    volumes:
+      - backend-data:/app/data
     ports:
       - "3000:3000"
 
@@ -28,3 +33,6 @@ services:
       - backend
     ports:
       - "3001:80"
+
+volumes:
+  backend-data:

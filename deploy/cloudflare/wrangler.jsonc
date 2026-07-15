@@ -1,0 +1,23 @@
+{
+  "name": "webhook-inspector-cloudflare",
+  "main": "./src/index.ts",
+  "compatibility_date": "2026-07-15",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "webhook-inspector",
+      "database_id": "replace-with-your-d1-database-id"
+    }
+  ],
+  "vars": {
+    "CORS_ORIGIN": ""
+  }
+}
