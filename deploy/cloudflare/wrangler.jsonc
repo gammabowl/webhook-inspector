@@ -13,8 +13,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "webhook-inspector",
-      "database_id": "replace-with-your-d1-database-id"
+      "database_name": "webhook-inspector-db",
+      "database_id": "11019df4-531f-4f5d-afde-5afd6c6adf27"
     }
   ],
   "vars": {
