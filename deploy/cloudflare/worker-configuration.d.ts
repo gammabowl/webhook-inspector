@@ -28,6 +28,7 @@ declare interface D1PreparedStatement {
 }
 
 declare interface D1Database {
+  batch<T = Record<string, unknown>>(statements: D1PreparedStatement[]): Promise<Array<D1Result<T>>>;
   exec(query: string): Promise<D1ExecResult>;
   prepare(query: string): D1PreparedStatement;
 }
