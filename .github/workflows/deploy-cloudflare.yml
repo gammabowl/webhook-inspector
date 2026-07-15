@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feat/redis-sqlite-options-add-cloudflare-deploy
 
 permissions:
   contents: read
