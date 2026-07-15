@@ -144,5 +144,3 @@ The app is organized as two standalone packages:
 - `frontend/`
 
 You can install and run them separately if you want to develop without Docker.
-
-*Experimental*
