@@ -1,0 +1,16 @@
+# Webhook Inspector
+
+> Webhook Inspector is an open-source utility for receiving, inspecting, and debugging webhook requests through unique, anonymous URLs.
+
+Use the landing page to create a new webhook URL. Send HTTP requests to that URL, then view the captured method, headers, body, and request details in the browser. Webhook URLs are user-specific and transient; do not treat their contents as public documentation or indexable resources.
+
+The project can be self-hosted with a NestJS backend, React frontend, and either SQLite or Redis storage. It also includes an optional Cloudflare deployment adapter.
+
+## Project documentation
+
+- [Project README](https://github.com/gammabowl/webhook-inspector#readme): Setup, usage, API, storage, Docker, and self-hosting guidance.
+- [Cloudflare deployment guide](https://github.com/gammabowl/webhook-inspector/tree/main/deploy/cloudflare): Optional Cloudflare-specific deployment instructions.
+
+## Source
+
+- [Webhook Inspector source code](https://github.com/gammabowl/webhook-inspector): The complete open-source repository.

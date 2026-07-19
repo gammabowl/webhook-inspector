@@ -6,6 +6,7 @@ import SidebarRequestList from "../components/SidebarRequestList";
 import RequestViewer from "../components/RequestViewer";
 import CopyButton from "../components/CopyButton";
 import { getApiBaseUrl } from "../lib/config";
+import { usePageMetadata } from "../lib/seo";
 
 const POLL_INTERVAL = 1500;
 const MAX_REQUESTS = 50;
@@ -13,6 +14,11 @@ const API_ORIGIN = new URL(getApiBaseUrl()).origin;
 const STORAGE_KEY = "webhook-inspector.webhook-id";
 
 export default function WebhookPage() {
+  usePageMetadata({
+    title: "Webhook Inspector — Test and debug webhooks",
+    description: "Inspect incoming webhook requests, including methods, headers, and payloads, in real time.",
+    indexable: false,
+  });
   const { webhookId = "" } = useParams();
   const navigate = useNavigate();
   const [requests, setRequests] = useState<WebhookRequest[]>([]);

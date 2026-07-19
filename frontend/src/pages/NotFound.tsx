@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { usePageMetadata } from "../lib/seo";
 
 export default function NotFound() {
+  usePageMetadata({ title: "Page not found | Webhook Inspector", indexable: false });
+
   return (
     <main className="flex min-h-full items-center justify-center px-4 py-8">
       <div className="w-full max-w-2xl rounded-[2rem] border border-slate-200 bg-white p-8 text-center shadow-soft md:p-10">
